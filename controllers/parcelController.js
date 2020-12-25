@@ -94,7 +94,7 @@ export const changeParcelDestination = (req, res) => {
       )
       .then((updatedParcel) => {
         if (!updatedParcel.rows[0]) {
-          res.json({ msg: "Unauthorized, you are not allow to do that" });
+          res.json({ msg: "Unauthorized, you are not allowed to do that" });
         } else {
           res.json({
             success: true,
@@ -105,7 +105,7 @@ export const changeParcelDestination = (req, res) => {
       })
       .catch((err) => res.json({ msg: err.message }));
   } else {
-    res.json({ msg: "Unauthorized, you are not allow to do that" });
+    res.json({ msg: "Unauthorized, you are not allowed to do that" });
   }
 };
 
@@ -114,7 +114,7 @@ export const changeStatus = (req, res) => {
   const { status } = req.body;
   const { parcelId } = req.params;
   if (req.decoded.role !== "admin") {
-    res.json({ msg: "Unauthorized, you are not allow to do that" });
+    res.json({ msg: "Unauthorized, you are not allowed to do that" });
   } else {
     client
       .query("UPDATE Parcels SET status = $1 WHERE id = $2 RETURNING *", [
@@ -178,6 +178,6 @@ export const cancelParcel = (req, res) => {
         console.log(err.message);
       });
   } else {
-    res.json({ msg: "Unauthorized, you are not allow to do that" });
+    res.json({ msg: "Unauthorized, you are not allowed to do that" });
   }
 };

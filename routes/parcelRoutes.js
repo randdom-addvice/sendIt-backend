@@ -30,7 +30,7 @@ app.put(
 app.put("/parcels/:parcelId/status", authorizeUser, changeStatus);
 
 //change the present location of a parcel delivery order
-app.put("/parcels/:parcelId/location", changeLocation);
+app.put("/parcels/:parcelId/location", authorizeUser changeLocation);
 
 //cancel a parcel delivery order
 app.put("/parcels/:parcelId/cancel", authorizeUser, cancelParcel);
