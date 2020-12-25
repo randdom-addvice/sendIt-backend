@@ -1,6 +1,11 @@
 import express from "express";
 import { check } from "express-validator";
-import { registerUser } from "../controllers/userController";
+import {
+  getSpecificUser,
+  loginUser,
+  registerUser,
+} from "../controllers/userController";
+import { authorizeUser } from "../middleware/authorizeUser";
 
 const app = express();
 
@@ -23,9 +28,9 @@ app.post(
 );
 
 //Login route
-app.post("/login");
+app.post("/login", loginUser);
 
 //user details route
-app.get("/user");
+app.get("/user", authorizeUser, getSpecificUser);
 
 export default app;

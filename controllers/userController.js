@@ -35,3 +35,52 @@ export const registerUser = async (req, res) => {
     res.json(err.message);
   }
 };
+
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    //check if user doesnt exist
+    const user = await client.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+
+    if (user.rows.length === 0) {
+      return res.status(401).json({ message: "User does not exist" });
+    }
+    //check if password match
+    const validPassword = await bcrypt.compare(password, user.rows[0].password);
+    if (!validPassword) {
+      return res.status(401).send("password incorrect");
+    }
+
+    //generate token
+    const token = jwtGenerator(user.rows[0]);
+    res.json({
+      token,
+      msg: "Login successful",
+      userId: user.rows[0].id,
+      expiresIn: "24hours",
+    });
+  } catch (err) {
+    console.log(err);
+    res.json(err.message);
+  }
+};
+
+//Get specific user
+export const getSpecificUser = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    const user = await client.query(
+      `SELECT * FROM users WHERE id = ${req.decoded.id}`
+    );
+    console.log(user.rows[0]);
+    res.status(200).send(user.rows[0]);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};
