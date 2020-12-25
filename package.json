@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./server.js --exec babel-node",
-    "start": "node ./server.js --exec babel-node"
+    "start": "babel-node ./server.js babel-node",
+    "dev": "nodemon ./server.js --exec babel-node"
   },
   "author": "Jay",
   "license": "ISC",
