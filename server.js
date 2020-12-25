@@ -13,6 +13,10 @@ connectDb();
 
 const PORT = process.env.PORT || 5000;
 
+app.get("/", (req, res) => {
+  res.send("welcome to dend it parcel");
+});
+
 //ROUTES
 app.use("/", routes);
 
