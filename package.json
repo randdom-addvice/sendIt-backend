@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "sendit app",
   "main": "server.js",
+  "engines": {
+    "node": "v12.18.4",
+    "npm": "6.14.6"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./server.js --exec babel-node"
+    "dev": "nodemon ./server.js --exec babel-node",
+    "start": "node ./server.js --exec babel-node"
   },
   "author": "Jay",
   "license": "ISC",
