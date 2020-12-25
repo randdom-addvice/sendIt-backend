@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const authorizeUser = (req, res, next) => {
   const token =
-    req.headers.authorization ||
+    req.headers.Authorization ||
     req.headers["x-access-token"] ||
     req.body.token;
   if (!token)
