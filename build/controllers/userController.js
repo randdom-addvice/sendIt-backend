@@ -132,7 +132,7 @@ var loginUser = /*#__PURE__*/function () {
               break;
             }
 
-            return _context2.abrupt("return", res.status(401).send("password incorrect"));
+            return _context2.abrupt("return", res.status(401).json("password incorrect"));
 
           case 12:
             //generate token
@@ -141,7 +141,8 @@ var loginUser = /*#__PURE__*/function () {
               token: token,
               msg: "Login successful",
               userId: user.rows[0].id,
-              expiresIn: "24hours"
+              expiresIn: "24hours",
+              success: true
             });
             _context2.next = 20;
             break;

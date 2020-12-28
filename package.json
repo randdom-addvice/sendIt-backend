@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node ./src/server.js babel-node",
+    "start": "babel-node ./build/server.js babel-node",
     "dev": "nodemon ./src/server.js --exec babel-node",
     "build": "babel src -d build"
   },
@@ -21,6 +21,7 @@
     "@babel/node": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.9.0",

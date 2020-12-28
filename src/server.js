@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import routes from "./routes";
+import cors from "cors";
 import { connectDb } from "./utils/db";
 
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 connectDb();
 

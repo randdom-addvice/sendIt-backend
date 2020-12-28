@@ -157,7 +157,7 @@ var changeLocation = function changeLocation(req, res) {
       msg: "Unauthorized, you are not allow to do that"
     });
   } else {
-    client.query("UPDATE parcels SET pickup_location = $1 WHERE id = $2 RETURNING *", [presentLocation, parcelId]).then(function (updatedLocation) {
+    client.query("UPDATE parcels SET pickup_location = $1 WHERE id = $2 RETURNING *", [location, parcelId]).then(function (updatedLocation) {
       res.json({
         msg: "status changed successfully",
         changes: updatedLocation.rows[0]

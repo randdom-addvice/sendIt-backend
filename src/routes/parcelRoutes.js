@@ -1,4 +1,5 @@
 import express from "express";
+import { check } from "express-validator";
 import {
   cancelParcel,
   changeLocation,
@@ -12,7 +13,25 @@ import { authorizeUser } from "../middleware/authorizeUser";
 const app = express();
 
 //create a parcel
-app.post("/parcels", authorizeUser, createParcel);
+app.post(
+  "/parcels",
+  [
+    check("pickup_location")
+      .notEmpty()
+      .withMessage("Please enter your pickup location"),
+    check("destination")
+      .notEmpty()
+      .withMessage("please enter your pcikup destination"),
+    check("recipient_name")
+      .notEmpty()
+      .withMessage("Please enter recipient name"),
+    check("recipient_phone_no")
+      .notEmpty()
+      .withMessage("please enter recipient phone number"),
+  ],
+  authorizeUser,
+  createParcel
+);
 
 // get all parcel by a specific user
 app.get("/parcels/:userId/", authorizeUser, getUserParcels);

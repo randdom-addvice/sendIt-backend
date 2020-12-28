@@ -143,7 +143,7 @@ export const changeLocation = (req, res) => {
     client
       .query(
         `UPDATE parcels SET pickup_location = $1 WHERE id = $2 RETURNING *`,
-        [presentLocation, parcelId]
+        [location, parcelId]
       )
       .then((updatedLocation) => {
         res.json({

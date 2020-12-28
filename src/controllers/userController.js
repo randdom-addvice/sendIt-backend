@@ -50,7 +50,7 @@ export const loginUser = async (req, res) => {
     //check if password match
     const validPassword = await bcrypt.compare(password, user.rows[0].password);
     if (!validPassword) {
-      return res.status(401).send("password incorrect");
+      return res.status(401).json("password incorrect");
     }
 
     //generate token
@@ -60,6 +60,7 @@ export const loginUser = async (req, res) => {
       msg: "Login successful",
       userId: user.rows[0].id,
       expiresIn: "24hours",
+      success: true,
     });
   } catch (err) {
     console.log(err);
